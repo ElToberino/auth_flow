@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Spotify Authentication | Multidisplay</title>
+    <meta name="description" content="Proxy page for Spotify authentication of your Multidisplay.">
+    <style>
+        :root {
+            --spotify-green: #1DB954;
+            --spotify-green-hover: #1ed760;
+            --bg-color: #121212;
+            --card-bg: #181818;
+            --text-main: #FFFFFF;
+            --text-muted: #A7A7A7;
+            --error-color: #e22134;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 90%;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        /* Spinner Animation */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-left-color: var(--spotify-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Error state styling */
+        #error-container {
+            display: none;
+        }
+
+        .error-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(226, 33, 52, 0.1);
+            color: var(--error-color);
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            padding: 12px 32px;
+            border-radius: 500px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: transform 0.2s, background-color 0.2s;
+            cursor: pointer;
+            border: none;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: scale(1.04);
+            background-color: #f6f6f6;
+        }
+
+        .btn-green {
+            background-color: var(--spotify-green);
+            color: white;
+        }
+
+        .btn-green:hover {
+            background-color: var(--spotify-green-hover);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ladescreen (Standard) -->
+    <div class="container" id="loading-container">
+        <div class="spinner" id="loading-spinner"></div>
+        <h1 id="main-title">Connecting to display...</h1>
+        <p id="sub-title">You will be automatically redirected back to your multidisplay.</p>
+    </div>
+
+    <!-- Fehlerscreen -->
+    <div class="container" id="error-container">
+        <div class="error-icon">✕</div>
+        <h1>Connection Error</h1>
+        <p id="error-message">Missing parameters (code or IP address). Please restart the authentication from your
+            display's web interface.</p>
+        <button class="btn" onclick="window.close()">Close Window</button>
+    </div>
+
+    <div style="position: absolute; bottom: 20px; width: 100%; text-align: center;">
+        <a href="privacy.html"
+            style="color: var(--text-muted); font-size: 0.8rem; text-decoration: none; opacity: 0.7;">Privacy Policy</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Spracherkennung und Übersetzung
+            const userLang = navigator.language || navigator.userLanguage;
+            const isGerman = userLang.toLowerCase().startsWith('de');
+
+            if (isGerman) {
+                document.title = "Spotify Authentifizierung | Multidisplay";
+                document.getElementById('main-title').innerText = "Verbinde mit Display...";
+                document.getElementById('sub-title').innerText = "Du wirst automatisch zurück zu deinem Multidisplay weitergeleitet.";
+                document.querySelector('#error-container h1').innerText = "Fehler bei der Verbindung";
+                document.getElementById('error-message').innerText = "Es fehlen wichtige Parameter (Code oder IP-Adresse). Bitte starte die Authentifizierung über das Webinterface deines Displays neu.";
+                document.querySelector('#error-container .btn').innerText = "Fenster schließen";
+                document.querySelector('a[href="privacy.html"]').innerText = "Datenschutzerklärung";
+            }
+
+            // 2. Parameter aus der URL auslesen
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            const espIp = urlParams.get('state');
+
+            const loadingContainer = document.getElementById('loading-container');
+            const errorContainer = document.getElementById('error-container');
+            const errorMessage = document.getElementById('error-message');
+
+            // 3. Prüfen, ob Spotify einen Fehler zurückgegeben hat (z. B. Nutzer hat abgebrochen)
+            const errorParam = urlParams.get('error');
+            if (errorParam) {
+                loadingContainer.style.display = 'none';
+                errorContainer.style.display = 'block';
+                if (isGerman) {
+                    errorMessage.innerText = "Spotify hat die Anfrage abgelehnt (" + errorParam + "). Bitte versuche es erneut.";
+                } else {
+                    errorMessage.innerText = "Spotify rejected the request (" + errorParam + "). Please try again.";
+                }
+                return;
+            }
+
+            // 4. Prüfen, ob alle notwendigen Daten da sind
+            if (!code || !espIp) {
+                loadingContainer.style.display = 'none';
+                errorContainer.style.display = 'block';
+                return;
+            }
+
+            // 3. Ziel-URL zusammenbauen (Endpoint /callback auf dem ESP!)
+            const targetUrl = `http://${espIp}/callback?code=${code}`;
+
+            // Kurze Verzögerung für die UX, damit es nicht "flackert", dann weiterleiten
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 800);
+        });
+    </script>
+</body>
+
+</html>
