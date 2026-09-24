@@ -13,7 +13,7 @@ Just take a look at index.html and you will see how (simple) it works.<br>
 
 **Privacy & Security** (Privacy by Design)<br>
 This proxy is designed with strict privacy in mind:
-- *No Data Collection:* The entire process runs locally in your browser. No personal data, IP addresses, or authentication tokens are ever sent to, processed, or stored by the owner of this repository.
+- *No Data Collection by the Author:* The proxy logic runs entirely locally in your browser. While the one-time authentication code and your local IP temporarily pass through the URL, they are never collected, processed, or stored by the author of this project. (Note: As standard practice, the hosting provider, GitHub, may temporarily log requested URLs in their server logs).
 - *No Tracking:* This page uses no tracking scripts and no cookies.
 
 For more details, please check the [Privacy Policy](privacy.html) included in this repository.
