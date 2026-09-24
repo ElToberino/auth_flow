@@ -1,6 +1,6 @@
 ## Spotify Authentication Proxy for Tobers Multidisplay
 
-This repository hosts a static, client-side proxy page used to securely authenticate Tobers Multidisplay and Tobers Multidisplay XXL with the Spotify API.<br>
+This repository hosts a static, client-side proxy page used to securely authenticate [Tobers Multidisplay](https://github.com/ElToberino/Tobers_Multidisplay) and [Tobers Multidisplay XXL](https://github.com/ElToberino/Tobers_Multidisplay_XXL) with the Spotify API.<br>
 <br>
 
 **Why is this needed?**<br>
