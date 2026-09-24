@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,15 +34,16 @@
             width: 100%;
         }
 
-        h1, h2 {
+        h1,
+        h2 {
             color: var(--text-main);
         }
-        
+
         h1 {
             font-size: 1.5rem;
             margin-top: 0;
         }
-        
+
         h2 {
             font-size: 1.2rem;
             margin-top: 30px;
@@ -49,7 +51,8 @@
             padding-bottom: 5px;
         }
 
-        p, ul {
+        p,
+        ul {
             color: var(--text-muted);
             font-size: 0.95rem;
         }
@@ -74,76 +77,123 @@
             font-size: 0.95rem;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Spracherkennung und Übersetzung
+            const userLang = navigator.language || navigator.userLanguage;
+            const isGerman = userLang.toLowerCase().startsWith('de');
+
+            if (isGerman) {
+                window.location.href = "#de";
+            }
+        });
+    </script>
 </head>
+
 <body>
     <div class="container">
-        <a href="index.html" class="back-link">← Zurück / Back</a>
-        
+        <span id="en"></span>
+        <a href="index.html" class="back-link">← Back</a>
+
         <div class="lang-switch">
             <a href="#en">🇬🇧 English</a> &nbsp;|&nbsp; <a href="#de">🇩🇪 Deutsch</a>
         </div>
 
         <!-- ENGLISH VERSION -->
-        <h1 id="en">Privacy Policy</h1>
-        <p>This website serves exclusively as a technical proxy (redirect) to authorize local ESP microcontrollers with the Spotify API. It is operated purely as an open-source hobby project without any commercial intentions.</p>
+        <h1>Privacy Policy</h1>
+        <p>This website serves exclusively as a technical proxy (redirect) to authorize local ESP microcontrollers with
+            the Spotify API. It is operated purely as an open-source hobby project without any commercial intentions.
+        </p>
 
         <h2>1. Data Collection by this Website</h2>
-        <p>As the operator of this website, I <strong>do not collect, process, or store any personal data</strong> from you.</p>
+        <p>As the operator of this website, I <strong>do not collect, process, or store any personal data</strong> from
+            you.</p>
         <ul>
-            <li>The authorization code provided by Spotify and the local IP address passed in the link are only read client-side (in your browser).</li>
+            <li>The authorization code provided by Spotify and the local IP address passed in the link are only read
+                client-side (in your browser).</li>
             <li>No data is transmitted to servers owned or operated by me.</li>
-            <li>No cookies, tracking tools (such as Google Analytics), or web fonts (such as Google Fonts) are used.</li>
+            <li>No cookies, tracking tools (such as Google Analytics), or web fonts (such as Google Fonts) are used.
+            </li>
         </ul>
 
         <h2>2. Hosting via GitHub Pages</h2>
         <p>This website is hosted by the following third-party provider:<br>
-        <strong>GitHub Inc.</strong>, 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.</p>
-        
-        <p>Every time this website is accessed, GitHub's system automatically collects data and information from the computer system of the accessing computer. The following data may be stored temporarily in the server log files:</p>
+            <strong>GitHub Inc.</strong>, 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.
+        </p>
+
+        <p>Every time this website is accessed, GitHub's system automatically collects data and information from the
+            computer system of the accessing computer. The following data may be stored temporarily in the server log
+            files:</p>
         <ul>
             <li>Information about the browser type and version used</li>
             <li>The user's operating system</li>
             <li>The user's IP address</li>
             <li>Date and time of access</li>
         </ul>
-        <p>This data is stored in log files by GitHub to ensure the functionality of the website and the security of its information technology systems. For more information on data protection at GitHub, please refer to the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</p>
+        <p>This data is stored in log files by GitHub to ensure the functionality of the website and the security of its
+            information technology systems. For more information on data protection at GitHub, please refer to the <a
+                href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank"
+                rel="noopener">GitHub Privacy Statement</a>.</p>
 
         <h2>3. Data Transfer to the USA</h2>
-        <p>Please note that by hosting with GitHub, data may be transferred to the USA. GitHub is a US company. The data transfer is based on standard contractual clauses or adequacy decisions (Data Privacy Framework).</p>
+        <p>Please note that by hosting with GitHub, data may be transferred to the USA. GitHub is a US company. The data
+            transfer is based on standard contractual clauses or adequacy decisions (Data Privacy Framework).</p>
 
         <p style="margin-bottom: 40px; font-size: 0.85rem;">Last updated: September 2026</p>
 
         <hr style="border: 0; border-top: 1px solid #333; margin: 40px 0;">
 
         <!-- GERMAN VERSION -->
-        <h1 id="de">Datenschutzerklärung</h1>
-        <p>Diese Website dient ausschließlich als technischer Proxy (Weiterleitung) zur Autorisierung lokaler ESP-Mikrocontroller bei der Spotify API. Sie wird als reines Open-Source-Hobbyprojekt ohne kommerzielle Absichten betrieben.</p>
+        <span id="de"></span>
+        <a href="index.html" class="back-link">← Zurück</a>
+
+        <div class="lang-switch">
+            <a href="#en">🇬🇧 English</a> &nbsp;|&nbsp; <a href="#de">🇩🇪 Deutsch</a>
+        </div>
+
+        <h1>Datenschutzerklärung</h1>
+        <p>Diese Website dient ausschließlich als technischer Proxy (Weiterleitung) zur Autorisierung lokaler
+            ESP-Mikrocontroller bei der Spotify API. Sie wird als reines Open-Source-Hobbyprojekt ohne kommerzielle
+            Absichten betrieben.</p>
 
         <h2>1. Datenerhebung durch diese Website</h2>
-        <p>Als Betreiber dieser Website erhebe, verarbeite oder speichere ich <strong>keinerlei personenbezogene Daten</strong> von Ihnen.</p>
+        <p>Als Betreiber dieser Website erhebe, verarbeite oder speichere ich <strong>keinerlei personenbezogene
+                Daten</strong> von Ihnen.</p>
         <ul>
-            <li>Der von Spotify bereitgestellte Autorisierungs-Code sowie die im Link übergebene lokale IP-Adresse werden lediglich clientseitig (in Ihrem Browser) ausgelesen.</li>
+            <li>Der von Spotify bereitgestellte Autorisierungs-Code sowie die im Link übergebene lokale IP-Adresse
+                werden lediglich clientseitig (in Ihrem Browser) ausgelesen.</li>
             <li>Es findet keine Übertragung dieser Daten an Server des Betreibers statt.</li>
-            <li>Es werden keine Cookies, Tracking-Tools (wie Google Analytics) oder Web Fonts (wie Google Fonts) eingesetzt.</li>
+            <li>Es werden keine Cookies, Tracking-Tools (wie Google Analytics) oder Web Fonts (wie Google Fonts)
+                eingesetzt.</li>
         </ul>
 
         <h2>2. Hosting über GitHub Pages</h2>
         <p>Diese Website wird bei dem folgenden Drittanbieter gehostet:<br>
-        <strong>GitHub Inc.</strong>, 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.</p>
-        
-        <p>Bei jedem Aufruf dieser Website erfasst das System von GitHub automatisiert Daten und Informationen vom Computersystem des aufrufenden Rechners. Folgende Daten können dabei temporär in den Logfiles des Servers gespeichert werden:</p>
+            <strong>GitHub Inc.</strong>, 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.
+        </p>
+
+        <p>Bei jedem Aufruf dieser Website erfasst das System von GitHub automatisiert Daten und Informationen vom
+            Computersystem des aufrufenden Rechners. Folgende Daten können dabei temporär in den Logfiles des Servers
+            gespeichert werden:</p>
         <ul>
             <li>Informationen über den Browsertyp und die verwendete Version</li>
             <li>Das Betriebssystem des Nutzers</li>
             <li>Die IP-Adresse des Nutzers</li>
             <li>Datum und Uhrzeit des Zugriffs</li>
         </ul>
-        <p>Die Speicherung dieser Daten in Logfiles erfolgt durch GitHub zur Gewährleistung der Funktionsfähigkeit der Website und zur Sicherstellung der Sicherheit der informationstechnischen Systeme. Weitere Informationen zum Datenschutz bei GitHub finden Sie in der <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">Datenschutzerklärung von GitHub</a>.</p>
+        <p>Die Speicherung dieser Daten in Logfiles erfolgt durch GitHub zur Gewährleistung der Funktionsfähigkeit der
+            Website und zur Sicherstellung der Sicherheit der informationstechnischen Systeme. Weitere Informationen zum
+            Datenschutz bei GitHub finden Sie in der <a
+                href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank"
+                rel="noopener">Datenschutzerklärung von GitHub</a>.</p>
 
         <h2>3. Datenübermittlung in die USA</h2>
-        <p>Wir weisen darauf hin, dass durch das Hosting bei GitHub Daten in die USA übertragen werden können. GitHub ist ein US-amerikanisches Unternehmen. Die Datenübertragung stützt sich auf Standardvertragsklauseln bzw. Angemessenheitsbeschlüsse (Data Privacy Framework).</p>
+        <p>Wir weisen darauf hin, dass durch das Hosting bei GitHub Daten in die USA übertragen werden können. GitHub
+            ist ein US-amerikanisches Unternehmen. Die Datenübertragung stützt sich auf Standardvertragsklauseln bzw.
+            Angemessenheitsbeschlüsse (Data Privacy Framework).</p>
 
         <p style="margin-top: 40px; font-size: 0.85rem;">Stand: September 2026</p>
     </div>
 </body>
+
 </html>
